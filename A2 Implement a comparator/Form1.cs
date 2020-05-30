@@ -42,7 +42,7 @@ namespace A2_Implement_a_comparator
 
            
                 // Initialize a string array.
-                string [] words = { "The", "quick", "brown", "fox", "jumps", "over",
+                string [] words = { "The", "quick", "brown", "fox", "jumps", "overrr",
                          "the", "lazy", "dog" };
 
             // Display the array values.
@@ -59,10 +59,13 @@ namespace A2_Implement_a_comparator
             // Sort the array values using the reverse case-insensitive comparer.
             Array.Sort(words, new ReverserClass());
             Console.WriteLine("After sorting with the reverse case-insensitive comparer:");
+            Console.WriteLine("After sorting with the reverse case-insensitive comparer TEST:");
             PrintIndexAndValues(words);
         }
 
-        
+       
+
+
             public static void PrintIndexAndValues(IEnumerable list)
             {
                 
