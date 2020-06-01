@@ -1,14 +1,13 @@
 ﻿
-//*****************************************************************************
+//*********************************************************************
 // Programmer: Kamolchanok Pornleesangsuwan
-// Date: 24 May 2020
+// Date: 29 May 2020
 // Software: Microsoft Visual Studio 2019 Community Edition
 // Platform: Microsoft Windows 10 Professional 64­bit
 // Purpose: A2_Implement_a_comparator
-// Adapted from https://www.jonasjohn.de/snippets/csharp/drag­anddrop­example.htm
+// 
 //
-//*****************************************************************************
-
+//**********************************************************************
 
 using System;
 using System.Collections.Generic;
@@ -29,109 +28,87 @@ namespace A2_Implement_a_comparator
         {
             InitializeComponent();
         }
-        public class ReverserClass : IComparer
+
+        // Songs string array.
+
+        string[] songs = { "Zbra", "SourCandy", "VersaceOnTheFloor", "WatermelonSugar", "Daisies", "Sugar", "HighHope" };
+        
+
+
+        public class StringLengthComparer : IComparer<string>
         {
-            // Call CaseInsensitiveComparer.Compare with the parameters reversed.
-            int IComparer.Compare(Object x, Object y)
+            public int Compare(string r, string s)
             {
-                return ((new CaseInsensitiveComparer()).Compare(y, x));
+                if (r.Length > s.Length)
+                    return 1;
+
+                if (r.Length < s.Length)
+                    return -1;
+
+                return 0;
             }
         }
+
+
+
+
         private void FrmMain_Load(object sender, EventArgs e)
         {
-
-           
-                // Initialize a string array.
-                string [] words = { "The", "quick", "brown", "fox", "jumps", "overrr",
-                         "the", "lazy", "dog" };
-
+  
             // Display the array values.
-            lblText.Text = "The array initially contains the following values";
-            // lstBox.Text = PrintIndexAndValues(words);
-
-            //PrintIndexAndValues(words));
-
-            // Sort the array values using the default comparer.
-            Array.Sort(words);
-            Console.WriteLine("After sorting with the default comparer:");
-            PrintIndexAndValues(words);
+            lblText.Text = "All Songs in array :";
 
             // Sort the array values using the reverse case-insensitive comparer.
-            Array.Sort(words, new ReverserClass());
-            Console.WriteLine("After sorting with the reverse case-insensitive comparer:");
-            Console.WriteLine("After sorting with the reverse case-insensitive comparer TEST:");
-            PrintIndexAndValues(words);
+
+            lblText3.Text = "Sorting array values by length comparer:";
+           
+        }
+
+
+        public string PrintSongs()
+        {
+            string details = "";
+
+            for (int i = 0; i < 7; i++)
+            {
+
+                details += songs[i].ToString() + "\n";
+            }
+
+           
+            return details;
+
+        }
+
+        public string PrintSortedByLength()
+        {
+            string details = "";
+
+            for (int i = 0; i < 7; i++)
+            {
+
+                details += songs[i].ToString() + "\n";
+                Array.Sort(songs, new StringLengthComparer());
+            }
+            
+            //Array.Sort(songs, new StringLengthComparer());
+            return details;
+        }
+
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            lblPrint1.Text = PrintSongs();
+        }
+
+     
+        private void btnPrint3_Click(object sender, EventArgs e)
+        {
+
+            lblPrint3.Text = PrintSortedByLength();
         }
 
        
-
-
-            public static void PrintIndexAndValues(IEnumerable list)
-            {
-                
-                int i = 0;
-                foreach (var item in list)
-                Console.WriteLine($"   [{i++}]:  {item}");
-
-            }
-        }
     }
-
-
-
-
-    /*  
-     *   [STAThread]
-            static void Main(string[] args)
-            {
-                // Create an arary of objects.      
-                int fruit[] arrayOfFruits = new fruit[3]
-                 {
-                new fruit("Apple",5),
-                new fruit("Banana",2),
-                new fruit("Grapes",6),
-
-                 };
-
-                // Write out a header for the output.
-                Console.WriteLine("Array - Unsorted\n");
-
-                foreach (fruit f in arrayOfFruits)
-                    Console.WriteLine(f.Type + "\t\t" + f.Price);
-
-                // Demo IComparable by sorting array with "default" sort order.
-                Array.Sort(arrayOfFruits);
-                Console.WriteLine("\nArray - Sorted by Type (Ascending - IComparable)\n");
-
-                foreach (fruit f in arrayOfFruits)
-                    Console.WriteLine(f.Type + "\t\t" + f.Price);
-
-                // Demo ascending sort of numeric value with IComparer.
-                Array.Sort(arrayOfFruits, fruit.sortYearAscending());
-                Console.WriteLine("\nArray - Sorted by Price (Ascending - IComparer)\n");
-
-                foreach (fruit f in arrayOfFruits)
-                    Console.WriteLine(f.Type + "\t\t" + f.Price);
-
-                // Demo descending sort of string value with IComparer.
-                Array.Sort(arrayOfFruits, fruit.sortMakeDescending());
-                Console.WriteLine("\nArray - Sorted by Make (Descending - IComparer)\n");
-
-                foreach (fruit f in arrayOfFruits)
-                    Console.WriteLine(f.Type + "\t\t" + f.Price);
-
-                // Demo descending sort of numeric value using IComparer.
-                Array.Sort(arrayOfFruits, fruit.sortYearDescending());
-                Console.WriteLine("\nArray - Sorted by Price (Descending - IComparer)\n");
-
-                foreach (fruit f in arrayOfFruits)
-                    Console.WriteLine(f.Type + "\t\t" + f.Price);
-
-                Console.ReadLine();
-            }
-        }
     }
-
-    */
-
 
