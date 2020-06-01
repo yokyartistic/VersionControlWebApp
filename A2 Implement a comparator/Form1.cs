@@ -1,5 +1,5 @@
 ﻿
-//*********************************************************************
+//**********************************************************************
 // Programmer: Kamolchanok Pornleesangsuwan
 // Date: 29 May 2020
 // Software: Microsoft Visual Studio 2019 Community Edition
@@ -7,7 +7,7 @@
 // Purpose: A2_Implement_a_comparator
 // 
 //
-//**********************************************************************
+//***********************************************************************
 
 using System;
 using System.Collections.Generic;
